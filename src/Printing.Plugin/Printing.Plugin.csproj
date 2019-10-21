@@ -1,0 +1,167 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.31">
+
+  <PropertyGroup>
+    <!--Work around so the conditions work below-->
+    <TargetFrameworks>netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.18362</TargetFrameworks>
+    <!--<TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid81;uap10.0.18362</TargetFrameworks>
+    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0;Xamarin.iOS10;MonoAndroid81</TargetFrameworks>-->
+    <!--Feel free to add as many targets as you need below
+    netstandard1.0;netstandard2.0;MonoAndroid81;Xamarin.iOS10;uap10.0.18362;Xamarin.TVOS10;Xamarin.WatchOS10;Xamarin.Mac20;Tizen40
+    For UWP update the version number with a version number you have installed.
+    -->
+    <AssemblyName>Plugin.Printing</AssemblyName>
+    <RootNamespace>Plugin.Printing</RootNamespace>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>0.0.13.1</AssemblyVersion>
+    <AssemblyFileVersion>0.0.7.1</AssemblyFileVersion>
+    <Version>0.0.13.1</Version>
+    <Authors>John Hardman (built on top of the works of others)</Authors>
+    <PackageId>Xam.Plugin.Printing</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Owners>John Hardman</Owners>
+    <Summary>Printing functionality for Android, iOS and UWP</Summary>
+    <PackageTags>xamarin, windows, ios, android, xamarin.forms, plugin, print, printing</PackageTags>
+    <Title>Printing Plugin for Xamarin and Windows</Title>
+    <Description>
+        Printing of PDFs, Images, WebViews and URLs, using Xamarin.Forms on Android, iOS and UWP.
+
+        Some is still work-in-progress (particularly WebViews and URLs on UWP) but other bits should be ready for use.
+    </Description>
+    <Copyright>Copyright 2019</Copyright>
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>default</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>TRACE;ANDROIDAPI21PLUS</DefineConstants>
+
+    <!--<PackageVersion>0.0.1.0</PackageVersion>-->
+    <!--<UseFullSemVerForNuGet>false</UseFullSemVerForNuGet>-->
+    
+    <!--TODO: Fill these in-->
+    <PackageIconUrl></PackageIconUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageReleaseNotes>TBC</PackageReleaseNotes>
+    <FileVersion>0.0.13.1</FileVersion>
+    <Company>John Hardman</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+    <DebugType>portable</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <NoWarn />
+    <OutputPath>bin\Debug\</OutputPath>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <NoWarn></NoWarn>
+    <OutputPath>bin\Release\</OutputPath>
+    <WarningsAsErrors>NU1605</WarningsAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+    <Compile Include="**\*.netstandard.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('uap10.0')) ">
+    <Compile Include="**\*.uwp.cs" />
+    <!--
+    If you need to add sdk references:
+     <SDKReference Include="WindowsMobile, Version=10.0.18362.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
+    </SDKReference>
+    -->
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid')) ">
+    <Compile Include="**\*.android.cs" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <Compile Include="**\*.apple.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.848062" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="BasePrinting.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="PrintJobConfiguration.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Printing.uwp.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Printing.android.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Printing.apple.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="PrintStatusReporting.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="PrintJobException.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="BasePrintingMessages.shared.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="SafeBlockHelper.shared.cs" />
+  </ItemGroup>
+
+  <!--Additional item groups-->
+  <!--
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.TVOS')) ">
+    <Compile Include="**\*.tvos.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.WatchOS')) ">
+    <Compile Include="**\*.watchos.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <Compile Include="**\*.mac.cs" />
+  </ItemGroup>
+
+  
+   <ItemGroup Condition=" $(TargetFramework.StartsWith('netcoreapp')) ">
+    <Compile Include="**\*.netcore.cs" />
+  </ItemGroup>
+  
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Tizen')) ">
+    <Compile Include="**\*.tizen.cs" />
+    <PackageReference Include="Tizen.NET" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('net45')) ">
+    <Compile Include="**\*.dotnet.cs" />
+  </ItemGroup>
+  -->
+</Project>
