@@ -33,7 +33,7 @@ Note that this does not affect using the NuGet, just building the NuGet.
 | -------------------  | :------------------: | :------------------: |
 |Xamarin.iOS|Any?|Tested on 12+|
 |Xamarin.Android|5.0+|(Lollipop, version 21+)|
-|Windows 10 UWP|10+|1903+|
+|Windows 10 UWP|Build 1903+||
 
 
 ## Known Issues / Work-In-Progress
