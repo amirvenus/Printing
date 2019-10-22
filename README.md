@@ -62,7 +62,7 @@ Under MIT, see LICENSE file.
 
 #### Activity
 On Android, the printing functionality needs access to the main Activity of the using application.
-To provide the Activity, simply do the following in your Android project's Activity, typically in MainActivity.
+To provide the Activity, simply do the following in your Android project's Activity subclass, typically in MainActivity.
 ```
 Plugin.Printing.PrintServiceAndroidHelper.ActivityInstance = this;
 ```
