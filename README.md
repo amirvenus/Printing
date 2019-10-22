@@ -86,7 +86,7 @@ Plugin.Printing.CrossPrinting.PresetHelpLink = "{your URL goes here}";
 
 ### Exception and Status Reporting
 The printing functionality can report exception and status information back to the calling app for it to handle, whether hooking into App Center, popping up toasts etc.
-To wire up the necessary delegates/callbacks, call SetPrintStatusReporting with four delegates as follow:
+To wire up the necessary delegates/callbacks, call SetPrintStatusReporting with four delegates. An example follows:
 ```
 Plugin.Printing.PrintStatusReporting.SetPrintStatusReporting(
     DisplayErrorToastThatCanBeAcceptedAsync,
