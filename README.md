@@ -31,12 +31,15 @@ Note that this does not affect using the NuGet, just building the NuGet.
 
 |Platform|Version|More Detail|
 | -------------------  | :------------------: | :------------------: |
-|Xamarin.iOS|iOS||
+|Xamarin.iOS|Any?|Tested on 12+|
 |Xamarin.Android|5.0+|(Lollipop, version 21+)|
 |Windows 10 UWP|10+|1903+|
 
 
 ## Known Issues / Work-In-Progress
+
+### General
+* It may be possible to build/use this NuGet to work with target platform versions lower than those shown above (particularly for UWP). I haven't had the time to do that yet.
 
 ### iOS
 * The iOS implementation currently uses UIWebView, which is deprecated. This needs to be replaced by WKWebView to avoid potential issues when submitting apps to the App Store. See https://forums.xamarin.com/discussion/168620/itms-90338-non-public-api-usage-apple-rejected-my-app-xamarin#latest
