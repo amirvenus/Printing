@@ -32,7 +32,7 @@ Note that this does not affect using the NuGet, just building the NuGet.
 |Platform|Version|More Detail|
 | -------------------  | :------------------: | :------------------: |
 |Xamarin.iOS|iOS||
-|Xamarin.Android|5.0+ (Lollipop, version 21+)||
+|Xamarin.Android|5.0+|(Lollipop, version 21+)|
 |Windows 10 UWP|10+|1903+|
 
 
